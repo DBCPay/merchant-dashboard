@@ -1,6 +1,6 @@
 const config = {
   API_URL:
-    process.env.API_URL ||
+    import.meta.env.VITE_API_URL ||
     "https://adutem-innovation-backend.onrender.com/adutem/api/v1/",
   FIRE_BASE: {
     //   API_KEY: process.env.REACT_APP_APIKEY,
