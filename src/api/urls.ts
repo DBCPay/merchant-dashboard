@@ -1,7 +1,7 @@
 // Affiliate Auth
-export const LOGIN_MERCHANT = "/auth/affliate/login";
+export const LOGIN_MERCHANT = "/auth/affiliate/login";
 export const REGISTER_AFFILIATE = "/auth/affiliate/register";
-export const GET_PROFILE = "/auth/affliate/me";
+export const GET_PROFILE = "/auth/affiliate/me";
 
 // Question
 export const POST_CREATE_QUESTION = "/question";
