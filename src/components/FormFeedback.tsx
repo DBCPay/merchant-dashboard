@@ -6,7 +6,7 @@ interface FeedbackProps extends PropsWithChildren {
 
 const FormFeedback = ({ children }: FeedbackProps) => {
   return (
-    <div className="w-full mt-1 text-xs text-[var(--feedback-color)] font-medium">
+    <div className="w-full mt-1 text-xs text-[var(--feedback-color)] font-medium feedback">
       {children}
     </div>
   );

@@ -79,6 +79,12 @@ html {
   overflow-x: hidden;
 }
 
+label,
+input,
+.feedback {
+  font-family: var(--sfpro-medium);
+}
+
 .no-scrollbar::-webkit-scrollbar {
   appearance: none;
   -webkit-appearance: none;
