@@ -104,24 +104,12 @@ const Login = () => {
               placeholder="Enter your password"
               validation={validation}
             />
-            <div className="flex justify-end my-2">
-              <Link to={"/forgot-password"} className="base text-sm">
-                Forgot Password?
-              </Link>
-            </div>
+
             <div className="mt-6">
               <Button type="submit">
                 {isLoginReqLoading && <Spinner />}
                 Sign In
               </Button>
-            </div>
-            <div className="mt-2">
-              <p className="text-center text-sm">
-                Don't have an account?{" "}
-                <Link to={"/register"} className="base font-medium">
-                  Sign Up
-                </Link>
-              </p>
             </div>
           </form>
         </div>
