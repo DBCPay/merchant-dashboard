@@ -19,7 +19,7 @@ export const ProgressRing: React.FC<ProgressRingProps> = ({
     <svg height={radius * 2} width={radius * 2}>
       {/* Background Circle */}
       <circle
-        stroke="#e5e7eb" // Light gray
+        stroke="#D1D5DB"
         fill="transparent"
         strokeWidth={strokeWidth}
         r={normalizedRadius}
@@ -38,6 +38,8 @@ export const ProgressRing: React.FC<ProgressRingProps> = ({
         cx={radius}
         cy={radius}
         style={{ transition: "stroke-dashoffset 0.5s ease" }}
+        transform-origin="center"
+        transform="scale(1, -1)"
       />
       {/* Text Percentage */}
       <text
@@ -47,7 +49,7 @@ export const ProgressRing: React.FC<ProgressRingProps> = ({
         textAnchor="middle"
         fontSize="14px"
         fontWeight="bold"
-        fill="#181D27" // Dark gray
+        fill="#181D27"
         className="font-urbanist font-semibold text-[#181D27] leading-5"
       >
         {percentage}%
