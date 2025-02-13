@@ -47,7 +47,11 @@ export const InfoCard = ({
         ) : (
           <h4 className="text-gray-900 font-urbanist font-semibold text-[22px] leading-[30px]">
             {prefix}
-            {count}
+            {prefix === "₦"
+              ? Number(count).toLocaleString("en-US", {
+                  minimumFractionDigits: 2,
+                })
+              : count}
           </h4>
         )}
       </div>
