@@ -18,11 +18,8 @@ const Sidebar = ({ toggleHide, smallNav, sideNavRef }: SidebarProps) => {
 
   return (
     <SideNavContainer ref={sideNavRef} className="hide out-of-view side-nav">
-      <Header className="flex items-center gap-2  h-[56px] md:h-[64px] lg:h-[72px] cursor-pointer">
-        <img src={dbcLogo} />
-        <span className="link-name text-[var(--base-color)] font-semibold italic">
-          DBCPay
-        </span>
+      <Header className="flex justify-center items-center pt-5 h-[4.5rem] cursor-pointer">
+        <img src={dbcLogo} className="w-9 h-9" />
       </Header>
       <div className="self-center mt-auto mb-9">
         <FloatingActions />
@@ -54,65 +51,7 @@ const SideNavContainer = styled.nav`
   background-color: #f3f4f6;
   transition: 0.4s ease;
   overflow: hidden;
-
-  a,
-  button:not(.floating),
-  header {
-    transition: 0.4s ease;
-  }
-
-  a,
-  button:not(.floating) {
-    i,
-    span {
-      transition: 0.4s ease;
-    }
-  }
-
-  header {
-    img {
-      transition: 0.4s ease;
-    }
-  }
-
-  &.hide {
-    width: 84px;
-
-    a,
-    button:not(.floating),
-    header {
-      gap: 2.4rem;
-      padding-left: 25px;
-    }
-
-    header span {
-      display: none;
-    }
-
-    header img {
-      width: 40px;
-      height: 40px;
-    }
-
-    header {
-      padding: 1rem;
-    }
-
-    @media (min-width: 640px) {
-      a,
-      button:not(.floating) {
-        i {
-          transform: translateX(3.2px);
-        }
-      }
-
-      header {
-        img {
-          transform: translateX(3.2px);
-        }
-      }
-    }
-  }
+  width: 80px;
 
   @media (max-width: 640px) {
     position: fixed;
@@ -127,16 +66,6 @@ const SideNavContainer = styled.nav`
     border-top-left-radius: 0.75rem;
     border-top-right-radius: 0.75rem;
 
-    &.hide {
-      width: 100dvw;
-
-      a,
-      button:not(.floating) {
-        gap: initial;
-        padding-left: initial;
-      }
-    }
-
     &.out-of-view {
       transform: translateX(0%);
     }
@@ -144,13 +73,6 @@ const SideNavContainer = styled.nav`
 `;
 
 const Header = styled.header`
-  padding: 1rem 1.2rem;
-
-  span {
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
-
   @media (max-width: 640px) {
     display: none;
   }
