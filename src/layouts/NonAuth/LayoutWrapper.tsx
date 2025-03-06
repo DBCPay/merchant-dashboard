@@ -1,8 +1,6 @@
 import { PropsWithChildren } from "react";
-import mainImage from "../../assets/images/main-image.png";
-import { bounce, pulse } from "react-animations";
+import { pulse } from "react-animations";
 import styled, { keyframes } from "styled-components";
-import socialInteraction from "../../assets/social-interaction.svg";
 import authBg from "../../assets/images/auth-bg.jpg";
 
 const LayoutWrapper = (props: PropsWithChildren) => {

@@ -1,4 +1,3 @@
-import "./App.css";
 import Router from "./routes/Route";
 import styled from "styled-components";
 import { MantineProvider } from "@mantine/core";

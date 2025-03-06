@@ -41,6 +41,7 @@ const FormInput = ({
           onBlur={onBlur}
           onChange={onChange}
           disabled={disabled}
+          id={name}
           className="block border-[1px] rounded-md px-4 py-3 text-xs mt-2 w-full outline-none border-[lightgray] text-gray-800 font-medium bg-[var(--input-bg)] cursor-pointer"
         />
         {validation.touched[name] && validation.errors[name] ? (
@@ -62,6 +63,7 @@ const FormInput = ({
           onBlur={onBlur}
           onChange={onChange}
           disabled={disabled}
+          id={name}
           className="block border-[1px] rounded-md px-4 py-3 text-xs mt-2 w-full outline-none border-[lightgray] text-gray-800 font-medium bg-[var(--input-bg)] resize-y min-h-32 cursor-pointer"
         />
         {validation.touched[name] && validation.errors[name] ? (
@@ -84,6 +86,7 @@ const FormInput = ({
             onBlur={onBlur}
             onChange={onChange}
             disabled={disabled}
+            id={name}
             className="block border-[1px] rounded-md px-4 py-3 text-xs mt-2 w-full outline-none border-[lightgray] text-gray-800 font-medium bg-[var(--input-bg)] cursor-pointer relative"
           >
             <option value={""}>{placeholder}</option>
@@ -133,6 +136,7 @@ const FormInput = ({
         onBlur={onBlur}
         onChange={onChange}
         disabled={disabled}
+        id={name}
         className="block border-[1px] rounded-md px-4 py-3 text-xs mt-2 w-full outline-none border-[lightgray] text-gray-500 font-medium bg-[var(--input-bg)] cursor-pointer"
       />
       {validation.touched[name] && validation.errors[name] ? (
@@ -168,6 +172,7 @@ const PasswordInput = ({
           onBlur={onBlur}
           onChange={onChange}
           disabled={disabled}
+          id={name}
           className="block border-[1px] rounded-md px-4 py-3 text-xs mt-2 w-full outline-none border-[lightgray] text-gray-500 font-medium bg-[var(--input-bg)] cursor-pointer"
         />
         <button

@@ -1,21 +1,21 @@
 import { TabsEnum } from "@/enums";
+import { useRedux } from "@/hooks";
+import { changeTab } from "@/redux";
 import classNames from "classnames";
 import { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 
-interface TopTabProps {
-  currentTab: TabsEnum;
-  onSelectTab: (tab: TabsEnum) => void;
-}
-
 const topTabs: TabsEnum[] = Object.values(TabsEnum);
 
-export const TopTab = ({ currentTab, onSelectTab }: TopTabProps) => {
+export const TopTab = () => {
+  const { useStateSelector, dispatch } = useRedux();
+
+  const { activeTab } = useStateSelector((state) => state.Layout);
   const [sliderLeft, setSliderLeft] = useState(0);
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   useEffect(() => {
-    const currentIndex = topTabs.indexOf(currentTab);
+    const currentIndex = topTabs.indexOf(activeTab);
     if (buttonRefs.current[currentIndex]) {
       const { left } =
         buttonRefs.current[currentIndex]!.getBoundingClientRect();
@@ -23,11 +23,7 @@ export const TopTab = ({ currentTab, onSelectTab }: TopTabProps) => {
         buttonRefs.current[0]!.parentElement!.getBoundingClientRect().left;
       setSliderLeft(left - parentLeft);
     }
-  }, [currentTab]);
-
-  const changeTab = (tab: TabsEnum) => {
-    onSelectTab(tab);
-  };
+  }, [activeTab]);
 
   return (
     <TopTabContainer
@@ -42,11 +38,11 @@ export const TopTab = ({ currentTab, onSelectTab }: TopTabProps) => {
           className={classNames(
             "font-sfpro-medium w-full py-[10px] text-sm z-2 relative",
             {
-              "text-gray-200": currentTab !== item,
-              "text-gray-900": currentTab === item,
+              "text-gray-200": activeTab !== item,
+              "text-gray-900": activeTab === item,
             }
           )}
-          onClick={() => changeTab(item)}
+          onClick={() => dispatch(changeTab(item))}
         >
           {item}
         </button>

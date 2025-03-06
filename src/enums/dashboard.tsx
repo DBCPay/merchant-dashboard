@@ -5,3 +5,8 @@ export enum TabsEnum {
   CATALOG = "Catalog",
   CLIENTS = "Clients",
 }
+
+export enum InvoiceTabsEnum {
+  TABLE = "invoice-table",
+  CREATE = "create-invoice",
+}

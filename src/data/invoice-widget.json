@@ -1,0 +1,20 @@
+[
+    {
+        "title": "Total invoices",
+        "period": "This month",
+        "count": 32,
+        "showProgressRing": false
+    },
+    {
+        "title": "Paid invoices",
+        "period": "This month",
+        "count": 16,
+        "showProgressRing": false
+    },
+    {
+        "title": "In progress invoices",
+        "period": "This month",
+        "count": 8,
+        "showProgressRing": false
+    }
+]

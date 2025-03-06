@@ -17,6 +17,7 @@ const spinnerMap = {
 export const Spinner = ({ classNames, type = "base" }: SpinnerProps) => {
   return (
     <div
+      data-testid="loader"
       className={`mx-2 max-h-[150px] inline-block my-auto ${
         classNames ? classNames : "h-6"
       }`}

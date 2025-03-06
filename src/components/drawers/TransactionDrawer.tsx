@@ -6,7 +6,7 @@ import {
   SheetFooter,
   SheetHeader,
 } from "@/components/ui/sheet";
-import { Transaction } from "@/data";
+import { Transaction } from "@/interfaces";
 import { Badge } from "@/registry/ui/badge/Badge";
 import { WBtn } from "@/registry/ui/buttons/Button";
 import { Download, X } from "lucide-react";

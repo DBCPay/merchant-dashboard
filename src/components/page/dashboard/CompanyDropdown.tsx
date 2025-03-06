@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { PropsWithChildren, useState } from "react";
 import { ChevronDown, Plus, ChevronUp } from "lucide-react";
+import classNames from "classnames";
 
 type Props = {};
 export const CompanyDropDown = ({}: Props) => {
@@ -25,8 +26,9 @@ export const CompanyDropDown = ({}: Props) => {
           <Trigger isOpen={isOpen} />
         </DropdownMenuTrigger>
         <DropdownMenuContent
-          className="px-2 py-2.5 rounded-lg border-none"
+          className="px-2 py-2.5 rounded-lg border-none min-w-[200px] max-w-[400px]"
           align="start"
+          style={{ boxShadow: "0px 4px 16px #0000001F" }}
         >
           <CustomDropdownItem placeholder="Settings" />
           <DropdownMenuSeparator className="my-1.5" />
@@ -70,6 +72,7 @@ interface ItemProps extends PropsWithChildren {
   placeholder: string;
   onClick?: (...args: any) => any;
   childrenPosition?: "behind" | "after";
+  className?: any;
 }
 
 export const CustomDropdownItem = ({
@@ -77,14 +80,18 @@ export const CustomDropdownItem = ({
   onClick,
   children,
   childrenPosition,
+  className,
 }: ItemProps) => {
   return (
     <DropdownMenuItem
-      className="flex items-center cursor-pointer gap-2.5"
+      className={classNames(
+        "flex items-center cursor-pointer gap-2.5 px-2 py-1 rounded-lg hover:bg-blue-50",
+        className
+      )}
       onClick={() => onClick?.()}
     >
       {childrenPosition === "behind" && children}
-      <p className="text-gray-900 text-sm font-sfpro pointer-events-none">
+      <p className="text-gray-900 text-sm font-sfpro pointer-events-none leading-[20px]">
         {placeholder}
       </p>
       {childrenPosition === "after" && children}

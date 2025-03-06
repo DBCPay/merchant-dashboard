@@ -9,6 +9,8 @@
     "paths": {
       "@/*": ["./src/*"]
     },
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
     "typeRoots": ["./vite.env.d.ts", "node_modules/@types"]
   }
 }

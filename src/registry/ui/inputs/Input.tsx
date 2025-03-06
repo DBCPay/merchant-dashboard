@@ -7,7 +7,7 @@ import { Settings } from "lucide-react";
 import { Tooltip } from "../tooltip/Tooltip";
 
 const inputVariants = cva(
-  "password-root w-full max-w-96 mb-4 flex px-3 items-center gap-3 border border-[#F3F4F6] bg-[#F9FAFB] hover:bg-[#F3F4F6] rounded-[8px] relative",
+  "password-root w-full flex px-3 items-center gap-3 border border-[#F3F4F6] bg-[#F9FAFB] hover:bg-[#F3F4F6] rounded-[8px] relative",
   {
     variants: {
       size: {
@@ -35,6 +35,8 @@ export type InputProps = {
   label?: string;
   error?: string;
   hasAction?: boolean;
+  hasIcon?: boolean;
+  placeholderClassNames?: string;
   Icon?: any;
   onClickAction?(...args: any): any;
   actionText?: string;
@@ -52,6 +54,8 @@ const InputComp = ({
   disabled = false,
   defaultValue = "",
   hasAction = false,
+  hasIcon = false,
+  placeholderClassNames = "",
   Icon,
   onClickAction,
   actionText,
@@ -96,13 +100,15 @@ const InputComp = ({
       })}
       onClick={onClickRoot}
     >
-      <Settings
-        className={cn("w-4 h-4 flex", {
-          "text-[#9CA3AF]": !filled,
-          "text-[#1F2937]": filled || isFocused,
-          "text-[#D1D5DB]": disabled,
-        })}
-      />
+      {hasIcon && (
+        <Settings
+          className={cn("w-4 h-4 flex", {
+            "text-[#9CA3AF]": !filled,
+            "text-[#1F2937]": filled || isFocused,
+            "text-[#D1D5DB]": disabled,
+          })}
+        />
+      )}
       {/* Form group */}
       <div className="flex flex-col">
         {/* Label */}
@@ -137,8 +143,9 @@ const InputComp = ({
       {/* Placeholder */}
       <p
         className={cn(
-          "absolute text-[#6B7280] placeholder pointer-events-none text-sm hidden left-9",
-          { block: !isFocused && !filled }
+          "absolute text-gray-500 placeholder pointer-events-none text-sm hidden",
+          placeholderClassNames,
+          { block: !isFocused && !filled, "left-9": hasIcon }
         )}
       >
         {placeholder || "placeholder"}
