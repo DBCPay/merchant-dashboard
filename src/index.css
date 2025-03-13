@@ -303,6 +303,49 @@ input,
   }
 }
 
+.mantine-Input-input.mantine-DateInput-input,
+.mantine-Input-input.mantine-MultiSelect-input {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  height: 52px;
+  border-width: 1px;
+  border-color: #f3f4f6;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  position: relative;
+  font-family: var(--sfpro);
+  font-size: 14px;
+  line-height: 20px;
+  color: #6b7280;
+
+  &:hover {
+    background-color: #f3f4f6;
+  }
+}
+
+.mantine-Input-input.mantine-MultiSelect-input {
+  display: flex;
+  align-items: center;
+}
+
+.mantine-Popover-dropdown.mantine-MultiSelect-dropdown {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0px 4px 16px 0px #0000001f;
+  padding: 10px 8px;
+}
+
+.mantine-Popover-dropdown.mantine-MultiSelect-dropdown
+  .mantine-MultiSelect-options
+  .mantine-MultiSelect-option {
+  border-radius: 0.5rem;
+  /* padding: 4px 8px; */
+
+  &:hover {
+    background-color: #dbeafe;
+  }
+}
+
 @layer base {
   /* * {
     @apply border-border;
