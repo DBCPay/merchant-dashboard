@@ -5,3 +5,4 @@ export * from "./tabs";
 export * from "./tokens";
 export * from "./form";
 export * from "./page";
+export * from "./recomposed";

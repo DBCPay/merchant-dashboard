@@ -227,7 +227,7 @@ export function TransactionTable({
         </div>
       </div>
       {/* Table */}
-      <div className="rounded-md border  flex-1 bg-white p-4 w-full overflow-auto h-full custom-scrollbar no-scrollbar">
+      <div className="rounded-md border flex-1 bg-white p-4 w-full overflow-auto h-full custom-scrollbar no-scrollbar">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (

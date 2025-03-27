@@ -50,6 +50,9 @@ import { Badge } from "@/registry/ui/badge/Badge";
 import { Group, Pagination } from "@mantine/core";
 import { Avatar } from "@/registry/ui/avatar/Avatar";
 import { extractClientInitials } from "@/helpers";
+import { Button } from "../ui/button";
+import { SortingDropDown, StatusDropDown } from "./invoice";
+import { cn } from "@/lib/utils";
 
 const invoices = invoiceData as Invoice[];
 
@@ -59,44 +62,60 @@ const columns: ColumnDef<Invoice>[] = [
     header: "Invoice id",
     cell: ({ row }) => <div>{row.getValue("invoiceId")}</div>,
   },
-  // {
-  //   accessorKey: "clientId",
-  //   header: "Bill To",
-  //   cell: ({ row }) => <div>{row.getValue("clientId")}</div>,
-  // },
   {
     accessorKey: "clientDetails",
-    header: "Bill To",
+    header: "Bill to",
     cell: ({ row }) => <div>{row.getValue("clientDetails")}</div>,
   },
   {
     accessorKey: "status",
     header: ({ column }) => {
-      return (
-        <WBtn
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          className="px-0"
-        >
-          Status
-          <ChevronDown />
-        </WBtn>
-      );
+      return <StatusDropDown column={column} />;
     },
     cell: ({ row }) => <div>{row.getValue("status")}</div>,
+    filterFn: (row, columnId, filterStatuses: string[]) => {
+      // If no filters are selected, show all
+      if (!filterStatuses || filterStatuses.length === 0) return true;
+
+      // Check if row's status is in the selected filter statuses
+      return filterStatuses.includes(row.getValue(columnId));
+    },
   },
   {
     accessorKey: "amount",
     header: ({ column }) => {
+      const sortDirection = column.getIsSorted();
+      const sortDescending = () =>
+        sortDirection === "desc"
+          ? column.clearSorting()
+          : column.toggleSorting(true);
+      const sortAscending = () =>
+        sortDirection === "asc"
+          ? column.clearSorting()
+          : column.toggleSorting(false);
+
       return (
-        <WBtn
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          className="p-0"
-        >
-          Amount
-          <ListFilter />
-        </WBtn>
+        <SortingDropDown
+          Trigger={
+            <Button
+              variant={"ghost"}
+              onClick={column.getToggleSortingHandler()}
+              className="hover:bg-transparent py-4 px-6 w-full h-full justify-start text-xs font-semibold text-[#717680] hover:text-[#535862]"
+            >
+              Amount
+              {sortDirection === "asc" && (
+                <ListFilter className="text-blue-600 rotate-180" />
+              )}
+              {sortDirection === "desc" && (
+                <ListFilter className="text-blue-600" />
+              )}
+              {!sortDirection && <ListFilter className="text-[#A4A7AE]" />}
+            </Button>
+          }
+          sortDescending={sortDescending}
+          sortAscending={sortAscending}
+          sortDirection={sortDirection}
+        />
       );
     },
     cell: ({ row }) => <div>{row.getValue("amount")}</div>,
@@ -104,32 +123,80 @@ const columns: ColumnDef<Invoice>[] = [
   {
     accessorKey: "issuedAt",
     header: ({ column }) => {
+      const sortDirection = column.getIsSorted();
+      const sortDescending = () =>
+        sortDirection === "desc"
+          ? column.clearSorting()
+          : column.toggleSorting(true);
+      const sortAscending = () =>
+        sortDirection === "asc"
+          ? column.clearSorting()
+          : column.toggleSorting(false);
+
       return (
-        <WBtn
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          className="px-0"
-        >
-          Issued
-          <ListFilter />
-        </WBtn>
+        <SortingDropDown
+          Trigger={
+            <Button
+              variant={"ghost"}
+              onClick={column.getToggleSortingHandler()}
+              className="hover:bg-transparent py-4 px-6 w-full h-full justify-start font-semibold text-xs text-[#717680] hover:text-[#535862]"
+            >
+              Issued
+              {sortDirection === "asc" && (
+                <ListFilter className="text-blue-600 rotate-180" />
+              )}
+              {sortDirection === "desc" && (
+                <ListFilter className="text-blue-600" />
+              )}
+              {!sortDirection && <ListFilter className="text-[#A4A7AE]" />}
+            </Button>
+          }
+          sortDescending={sortDescending}
+          sortAscending={sortAscending}
+          sortDirection={sortDirection}
+        />
       );
     },
+    sortingFn: "datetime",
   },
   {
     accessorKey: "dueAt",
     header: ({ column }) => {
+      const sortDirection = column.getIsSorted();
+      const sortDescending = () =>
+        sortDirection === "desc"
+          ? column.clearSorting()
+          : column.toggleSorting(true);
+      const sortAscending = () =>
+        sortDirection === "asc"
+          ? column.clearSorting()
+          : column.toggleSorting(false);
+
       return (
-        <WBtn
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-          className="px-0"
-        >
-          Due
-          <ListFilter />
-        </WBtn>
+        <SortingDropDown
+          Trigger={
+            <Button
+              variant={"ghost"}
+              onClick={column.getToggleSortingHandler()}
+              className="hover:bg-transparent py-4 px-6 w-full h-full justify-start font-semibold text-xs text-[#717680] hover:text-[#535862]"
+            >
+              Due
+              {sortDirection === "asc" && (
+                <ListFilter className="text-blue-600 rotate-180" />
+              )}
+              {sortDirection === "desc" && (
+                <ListFilter className="text-blue-600" />
+              )}
+              {!sortDirection && <ListFilter className="text-[#A4A7AE]" />}
+            </Button>
+          }
+          sortDescending={sortDescending}
+          sortAscending={sortAscending}
+          sortDirection={sortDirection}
+        />
       );
     },
+    sortingFn: "datetime",
   },
   {
     id: "actions",
@@ -245,7 +312,17 @@ export const InvoiceTable = () => {
               <TableRow key={headerGroup.id} className="hover:bg-transparent">
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead
+                      key={header.id}
+                      className={cn("py-4", {
+                        "p-0": [
+                          "status",
+                          "amount",
+                          "issuedAt",
+                          "dueAt",
+                        ].includes(header.id),
+                      })}
+                    >
                       {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -270,7 +347,6 @@ export const InvoiceTable = () => {
                     className="cursor-pointer"
                   >
                     {row.getVisibleCells().map((cell) => {
-                      console.log(cell.id);
                       if (cell.id.includes("amount")) {
                         return (
                           <TableCell
